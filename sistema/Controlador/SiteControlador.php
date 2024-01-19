@@ -1,11 +1,12 @@
 <?php 
-    namespace sistema\Controlador;
+namespace sistema\Controlador;
 
-    use sistema\Nucleo\Controlador;
-    use sistema\Nucleo\Helpers;
-
-    use sistema\Modelo\PostModelo;
-    use sistema\Modelo\CategoriaModelo;
+use sistema\Nucleo\Helpers;
+/**Twig */
+use sistema\Nucleo\Controlador;
+/**Model */
+use sistema\Modelo\PostModelo;
+use sistema\Modelo\CategoriaModelo;
 
 
     class SiteControlador extends Controlador
@@ -15,45 +16,47 @@
             parent::__construct('templates/site/views');
         }
 
-        
-        public function index(): void
-        {
-            echo $this->template->renderizar('index.html',[
-
-                'posts'=> (new PostModelo())->ler(),
-                'categorias' => (new CategoriaModelo())->ler(),
-            
-            ]);
-        }
 
         public function sobre(): void
         {
-            echo $this->template->renderizar('sobre.html', [
-                'titulo' => 'Sobre',
-                'texto' => 'Texto sobre o Enem',
+            echo $this->template->renderizar('sobre.html',
+            [
+                'titulo' => 'Sobre'
+            ]);
+        }
+
+        public function index(): void
+        {
+            echo $this->template->renderizar('index.html',
+            [
+                'posts'=> (new PostModelo())->all(),
+                'categorias' => (new CategoriaModelo())->all(),
+            
             ]);
         }
 
         public function post(int $id): void
         {
+            $post = (new PostModelo())->post($id);
 
-            $post = (new PostModelo())->buscarPorId($id);
-            if (!$post) {
+            if (!$post)
+            {
                 Helpers::redirecionamento('404');
             }
-            
-             echo $this->template->renderizar('post.html', [
+
+            echo $this->template->renderizar('post.html', [
             'post' => $post,
-            'categorias' => (new CategoriaModelo())->ler(),   
+            'categorias' => (new CategoriaModelo())->all(),   
             ]);
         }
 
+       
         public function categoria(int $id): void
         {
             echo $this->template->renderizar('categoria.html',
             [
                 "posts" => (new CategoriaModelo())->posts($id),
-                "categorias" => (new CategoriaModelo())->ler(),  
+                "categorias" => (new CategoriaModelo())->all(),  
             ]);
         }
         
@@ -64,11 +67,11 @@
             
             if(isset($buscar))
             {
-                $posts = (new PostModelo())->Pesquisa($buscar['buscar']);
+                $posts = (new PostModelo())->BuscarPost($buscar['buscar']);
                 echo $this->template->renderizar('busca.html',
                 [
                     "posts" => $posts,
-                    "categorias" => (new CategoriaModelo())->ler(),
+                    "categorias" => (new CategoriaModelo())->all(),
                 
                 ]);
             }   

@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
+
 {% block corpo %}
 
-<div class="row">
-    <div class="col-lg-3">
+<div class="row vh-100 bg-white m-0 p-0">
+    <div class="col-lg-2 p-0 m-0" >
         {% include 'menu.html'%}
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-10 p-0 m-0">
+
         {% block conteudo %}
-        <h1>Dashboard bem vindo</h1>
+            
         {% endblock %}
     </div>
 </div>
 
 
 {% endblock %}
+

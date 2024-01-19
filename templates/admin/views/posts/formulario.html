@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %}
+
+{% block conteudo %}
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 text-left">
+        <h5 class="card-title"> Posts</h5>
+    </div>
+    <div class="card-body">
+        <form action="{% if post.id %}{{ url('admin/posts/editar/'~post.id) }}{%else%}{{ url('admin/posts/cadastrar/'~post.id) }}{%endif%}" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="text"
+              class="form-control" 
+              name="titulo" 
+              id="titulo" 
+              placeholder="Digite o titulo..."
+              value="{{post.titulo}}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Texto</label>
+            <textarea class="form-control"
+             id="texto"
+              name="texto" 
+              rows="3" 
+              placeholder="Digite o post...">{{post.texto}}
+            </textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+
+              <select class="form-select" 
+                id="categoria_id" 
+                name="categoria_id">
+                {% for categoria in categorias %}
+                <option value="{{categoria.id}}">{{categoria.titulo}}</option>
+                {% endfor %}
+              </select>
+
+            </div>
+            <div class="col-md-6">
+              <select 
+                class="form-select" 
+                name="status" >
+                <option value="1" {%if post.status == '1' %} selected{%endif%}>Ativo</option>
+                <option value="0" {%if post.status == '0' %} selected{%endif%}>Desativado</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3">
+              <input type="submit"
+               class="btn btn-primary"
+                value="{%if post.id%}Editar {%else%}Salvar{%endif%}">
+          </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

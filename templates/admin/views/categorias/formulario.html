@@ -1,0 +1,29 @@
+{% extends 'dashboard.html' %}
+
+{% block conteudo %}
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 text-left">
+        <h5 class="card-title"> Categorias</h5>
+    </div>
+    <div class="card-body">
+        <form  action="{% if categoria.id %} {{url('admin/categorias/editar/'~categoria.id)}} {%else%} {{url('admin/categorias/cadastrar')}} {%endif%}" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="text" 
+                class="form-control"
+                name="titulo"
+                id="titulo" 
+                placeholder="Digite o titulo..." 
+                value="{{categoria.titulo}}">
+           
+          </div>
+          <div class="mb-3">
+              <input type="submit" 
+              class="btn btn-primary"
+              value="{% if categoria.id %}Atualizar {% else %} Cadastar {%endif%}">
+          </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

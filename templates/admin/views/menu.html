@@ -1,20 +1,21 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+<div class=" d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100">
+
+    <a href="{{url('admin/painel')}}" class=" d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Barra Lateral</font></font></span>
+      <span class="fs-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">POSTS BRASIL</font></font></span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="{{url('admin/posts/listar')}}" class="nav-link text-white" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-          Post
+          Posts
         </font></font></a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="{{url('admin/categorias/listar')}}" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-          Categoria
+          Categorias
         </font></font></a>
       </li>
       <li>
